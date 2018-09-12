@@ -5,7 +5,5 @@
 
 import Foundation
 
-protocol Player {
-    var symbol: String {get set}
-    func move() -> Int
+class IO {
 }

@@ -5,5 +5,15 @@
 
 import Foundation
 
-class Computer {
+class Computer: Player {
+    var symbol: String
+
+    init(symbol: String) {
+        self.symbol = symbol
+    }
+
+    func move() -> Int {
+        return 0
+    }
+
 }

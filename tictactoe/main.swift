@@ -8,4 +8,4 @@
 
 import Foundation
 
-var b = Board()
+Game().play()

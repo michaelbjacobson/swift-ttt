@@ -5,6 +5,15 @@
 
 import Foundation
 
-class Human {
+class Human: Player {
+    var symbol: String
 
+    init(symbol: String) {
+       self.symbol = symbol
+    }
+
+    func move() -> Int {
+        let input = readLine()
+        return Int(input!)!
+    }
 }
