@@ -7,5 +7,5 @@ import Foundation
 
 protocol Player {
     var symbol: String {get set}
-    func move() -> Int
+    func move(game: Game) -> Int
 }

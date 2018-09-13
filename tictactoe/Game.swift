@@ -7,17 +7,18 @@ import Foundation
 
 class Game {
     var board: Board = Board()
-    var players: [Player] = [Human(symbol: "O"), Human(symbol: "X")]
+    var players: [Player] = [Human(symbol: "O"), Computer(symbol: "X")]
 
     func play() {
         print(self.board.format())
         while !isOver() {
             takeTurn()
         }
+        print("Game over!")
     }
 
     func takeTurn() {
-        self.board.update(index: currentPlayer().move(), symbol: currentPlayer().symbol)
+        self.board.updateTile(index: currentPlayer().move(game: self), symbol: currentPlayer().symbol)
         switchPlayers()
         print(self.board.format())
     }
@@ -45,8 +46,8 @@ class Game {
         return isWon() || isTied()
     }
 
-    private func currentPlayer() -> Player {
-        return self.players[0]
+    func currentPlayer() -> Player {
+        return self.players.first()
     }
 
     private func switchPlayers() {

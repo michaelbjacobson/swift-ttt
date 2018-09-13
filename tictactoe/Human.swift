@@ -12,7 +12,7 @@ class Human: Player {
        self.symbol = symbol
     }
 
-    func move() -> Int {
+    func move(game: Game) -> Int {
         let input = readLine()
         return Int(input!)!
     }

@@ -24,8 +24,12 @@ class Board {
          """
     }
 
-    func update(index: Int, symbol: String) {
+    func updateTile(index: Int, symbol: String) {
         self.tiles[index] = symbol
+    }
+
+    func resetTile(index: Int) {
+        self.tiles[index] = String(index)
     }
 
     func availableTileIndices() -> [Int] {
@@ -39,5 +43,9 @@ class Board {
 
     func isEmpty() -> Bool {
         return availableTileIndices().count == 9
+    }
+
+    func corners() -> [Int] {
+        return [0, 2, 6, 8]
     }
 }
