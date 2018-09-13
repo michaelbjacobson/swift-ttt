@@ -13,7 +13,7 @@ class Computer: Player {
     }
 
     func move(game: Game) -> Int {
-        waitOneSecond()
+//        waitOneSecond()
         if game.board.isEmpty() {
             return openingGambit(board: game.board)
         } else {

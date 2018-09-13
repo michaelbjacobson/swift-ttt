@@ -14,7 +14,7 @@ class Game {
         while !isOver() {
             takeTurn()
         }
-        print("Game over!")
+        display_game_over_message()
     }
 
     func takeTurn() {
@@ -53,5 +53,14 @@ class Game {
     private func switchPlayers() {
         let current = self.players.remove(at: 0)
         self.players.append(current)
+    }
+
+    func display_game_over_message() {
+        switchPlayers()
+        if isWon() {
+            print("\(currentPlayer().symbol) wins!")
+        } else {
+            print("Tie game!")
+        }
     }
 }
