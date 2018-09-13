@@ -13,7 +13,7 @@ class Human: Player {
     }
 
     func move(game: Game) -> Int {
-        let input = readLine()
-        return Int(input!)!
+        let input = readLine(strippingNewline: true)!
+        return Int(input)!
     }
 }

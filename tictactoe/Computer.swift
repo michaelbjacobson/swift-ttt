@@ -14,7 +14,11 @@ class Computer: Player {
 
     func move(game: Game) -> Int {
         waitOneSecond()
-        return game.board.isEmpty() ? openingGambit(board: game.board) : miniMax(game: game, depth: 0, scoresDict: [Int: Int]())
+        if game.board.isEmpty() {
+            return openingGambit(board: game.board)
+        } else {
+            return miniMax(game: game, depth: 0, scoresDict: [Int: Int]())
+        }
     }
 
     private func openingGambit(board: Board) -> Int {
@@ -22,7 +26,7 @@ class Computer: Player {
     }
 
     private func miniMax(game: Game, depth: Int, scoresDict: [Int: Int]) -> Int {
-        var scoresDict: [Int: Int] = scoresDict
+        var scoresDict = scoresDict
         if game.isOver() {
             return heuristicValue(game: game)
         } else {
@@ -31,22 +35,28 @@ class Computer: Player {
                 scoresDict.updateValue((-1 * miniMax(game: game, depth: depth + 1, scoresDict: [Int: Int]())), forKey: index)
                 game.board.resetTile(index: index)
             }
-            return depth == 0 ? bestMove(scoresDict: scoresDict) : bestScore(scoresDict: scoresDict)
+            if depth == 0 {
+                return bestMove(scoresDict: scoresDict)
+            } else {
+                return bestScore(scoresDict: scoresDict)
+            }
         }
     }
 
-    private func bestScore(scoresDict: [Int: Int]) -> Int {
-        // TODO: Implement this function properly
-        return 0
+    private func bestMove(scoresDict: [Int: Int]) -> Int {
+        return scoresDict.max { a, b in a.value < b.value }!.key
     }
 
-    private func bestMove(scoresDict: [Int: Int]) -> Int {
-        // TODO: Implement this function properly
-        return 0
+    private func bestScore(scoresDict: [Int: Int]) -> Int {
+        return scoresDict.max { a, b in a.value < b.value }!.value
     }
 
     private func heuristicValue(game: Game) -> Int {
-        return game.isWon() ? -1 : 0
+        if game.isWon() {
+            return -1
+        } else {
+            return 0
+        }
     }
 
     private func waitOneSecond() {

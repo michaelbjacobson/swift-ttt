@@ -7,7 +7,7 @@ import Foundation
 
 class Game {
     var board: Board = Board()
-    var players: [Player] = [Human(symbol: "O"), Computer(symbol: "X")]
+    var players: [Player] = [Computer(symbol: "O"), Computer(symbol: "X")]
 
     func play() {
         print(self.board.format())
