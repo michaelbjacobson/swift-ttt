@@ -7,7 +7,7 @@ import Foundation
 
 class Game {
     var board: Board = Board()
-    var players: [Player] = [Computer(symbol: "O"), Computer(symbol: "X")]
+    var players: [Player] = [Human(symbol: "O"), Computer(symbol: "X")]
 
     func play() {
         print(self.board.format())
@@ -19,7 +19,6 @@ class Game {
 
     func takeTurn() {
         self.board.updateTile(index: currentPlayer().move(game: self), symbol: currentPlayer().symbol)
-        switchPlayers()
         print(self.board.format())
     }
 
@@ -47,18 +46,24 @@ class Game {
     }
 
     func currentPlayer() -> Player {
-        return self.players.first()
+        return self.board.availableTileIndices().count % 2 != 0 ? firstPlayer() : secondPlayer()
     }
 
-    private func switchPlayers() {
-        let current = self.players.remove(at: 0)
-        self.players.append(current)
+    func firstPlayer() -> Player {
+        return self.players.first!
+    }
+
+    func secondPlayer() -> Player {
+        return self.players.last!
+    }
+
+    func winner() -> Player {
+        return isWonBy(player: firstPlayer()) ? firstPlayer() : secondPlayer()
     }
 
     func display_game_over_message() {
-        switchPlayers()
         if isWon() {
-            print("\(currentPlayer().symbol) wins!")
+            print("\(winner().symbol) wins!")
         } else {
             print("Tie game!")
         }

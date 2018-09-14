@@ -6,7 +6,7 @@
 import Foundation
 
 class Board {
-    var tiles: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+    var tiles: [String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var winningCombos: [[Int]] = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -29,7 +29,7 @@ class Board {
     }
 
     func resetTile(index: Int) {
-        self.tiles[index] = String(index)
+        self.tiles[index] = String(index + 1)
     }
 
     func availableTileIndices() -> [Int] {
